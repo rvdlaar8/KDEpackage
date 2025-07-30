@@ -1,0 +1,6 @@
+^R/functielijst_per_script\.txt$
+^dev$
+^testscript$
+^libraries$
+^.*\.Rproj$
+^\.Rproj\.user$

@@ -1,0 +1,48 @@
+exact_counts.R
+  - tel_b1_in_interval_rond_b2_foverlaps
+  - tel_b2_in_interval_rond_b1_foverlaps
+  - tel_exact_match_per_rij_dt1
+  - tel_exact_match_per_rij_dt2
+
+KDE corrected.R
+  - estimate_b1_counts_in_c2_intervals
+
+lib.R
+  - bereken_y
+  - bewaar_plots_als_pdf
+  - genereer_functielijst_per_script_mooi
+  - haal_functies_op
+  - is_referenced
+  - maak_acc_cols_gev_ongev
+  - matching_pipeline1
+  - matching_pipeline2
+  - toon_plots_1_seconde
+  - toon_plots_interactief
+
+matching_pipeline.R
+  - concat_columns
+  - matching_pipeline_var1
+  - matching_pipeline_var2
+  - matching_pipeline_var3
+  - matching_pipeline_variant
+  - rename_with_prefix
+
+nw func from.R
+  - estimate_b1_counts_at_b2_values
+
+plot dt2.R
+  - plot_b2_density_with_intervals
+
+plot dt3.R
+  - plot_b3_density_with_intervals
+
+rename_project_and_original_names.R
+  - rename_to_original_names
+  - rename_to_project_names
+
+switch_column_suffixes.R
+  - switch_column_suffixes
+
+voeg_samengestelde_kolom_toe.R
+  - voeg_samengestelde_kolom_toe
+

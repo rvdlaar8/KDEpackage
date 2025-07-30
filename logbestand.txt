@@ -1,0 +1,42 @@
+2025-07-24 21:39:10.921367 -- Fallback in batch 1 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:39:31.038713 -- Fallback in batch 1 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:39:31.115811 -- Fallback in batch 2 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:39:31.191821 -- Fallback in batch 3 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:39:31.267734 -- Fallback in batch 4 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:39:31.345008 -- Fallback in batch 5 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:39:31.382714 -- Fallback in batch 6 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:39:31.400903 -- Fallback in batch 7 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:41:27.955149 -- Fallback in batch 1 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:41:27.992812 -- Fallback in batch 2 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:41:28.067297 -- Fallback in batch 3 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:41:28.105395 -- Fallback in batch 4 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:41:28.182036 -- Fallback in batch 5 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:41:28.256421 -- Fallback in batch 6 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:41:28.272115 -- Fallback in batch 7 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:42:09.821598 -- Fallback in batch 1 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:42:09.85773 -- Fallback in batch 2 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:42:09.933024 -- Fallback in batch 3 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:42:09.96915 -- Fallback in batch 4 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:42:10.043057 -- Fallback in batch 5 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:42:10.118333 -- Fallback in batch 6 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:42:10.134226 -- Fallback in batch 7 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:43:18.362558 -- Fallback in batch 1 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:43:18.398733 -- Fallback in batch 2 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:43:18.471408 -- Fallback in batch 3 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:43:18.509997 -- Fallback in batch 4 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:43:18.5853 -- Fallback in batch 5 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:43:18.688292 -- Fallback in batch 6 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:43:18.706258 -- Fallback in batch 7 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:44:12.385954 -- Fallback in batch 1 : The first 3 columns of y's key must be identical to the columns specified in by.y.
+2025-07-24 21:50:10.344639 -- Fallback in batch 1 : Object 'idx' not found amongst [I, N]
+2025-07-24 21:50:26.280323 -- Fallback in batch 2 : Object 'idx' not found amongst [I, N]
+2025-07-24 21:54:10.826482 -- Fallback in batch 1 : Items of 'old' not found in column names: [.I]. Consider skip_absent=TRUE.
+2025-07-24 21:54:25.928512 -- Fallback in batch 2 : Items of 'old' not found in column names: [.I]. Consider skip_absent=TRUE.
+2025-07-24 21:54:34.425335 -- Fallback in batch 1 : Items of 'old' not found in column names: [.I]. Consider skip_absent=TRUE.
+2025-07-24 21:54:34.546571 -- Fallback in batch 2 : Items of 'old' not found in column names: [.I]. Consider skip_absent=TRUE.
+2025-07-24 21:54:34.670154 -- Fallback in batch 3 : Items of 'old' not found in column names: [.I]. Consider skip_absent=TRUE.
+2025-07-24 21:54:34.841733 -- Fallback in batch 4 : Items of 'old' not found in column names: [.I]. Consider skip_absent=TRUE.
+2025-07-24 21:54:34.971115 -- Fallback in batch 5 : Items of 'old' not found in column names: [.I]. Consider skip_absent=TRUE.
+2025-07-24 21:54:35.093127 -- Fallback in batch 6 : Items of 'old' not found in column names: [.I]. Consider skip_absent=TRUE.
+2025-07-24 21:54:35.146296 -- Fallback in batch 7 : Items of 'old' not found in column names: [.I]. Consider skip_absent=TRUE.
+2025-07-24 21:55:15.785189 -- Fallback in batch 1 : Items of 'old' not found in column names: [.I]. Consider skip_absent=TRUE.

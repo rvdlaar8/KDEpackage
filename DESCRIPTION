@@ -1,0 +1,15 @@
+Package: KDEpackage
+Type: Package
+Title: Matching pipeline and estimation utilities
+Version: 0.1.5
+Authors@R: person("Rob", "Van de Laar", email = "rwa.vandelaar@cbs.nl", role = c("aut", "cre"))
+Description: Tools for estimating, using either exact matching or kernel density estimation.
+Depends: R (>= 3.5.0)
+Imports: data.table, ggplot2, stats, rlang
+License: CBS
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

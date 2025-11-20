@@ -43,21 +43,23 @@ plot_c2_density_with_intervals <- function(
   dt <- copy(dt)
 
   # Bereken dichtheden per groep
-  N_groep <- dt[!is.na(get(c_col_cl)), .N, by = group_col_cl]
+  N_groep <- dt[!is.na(.SD[[1L]]), .N, by = group_col_cl]
   
-  dens_dt <- dt[!is.na(get(c_col_cl)), 
-                if (.N > 1) .(x = density(get(c_col_cl))$x,
-                              y = density(get(c_col_cl))$y), 
-                by = group_col_cl]
+  dens_dt <- dt[!is.na(.SD[[1L]]),
+                if (.N > 1)
+                  .(x = density(.SD[[1L]])$x,
+                    y = density(.SD[[1L]])$y),
+                by = group_col_cl,
+                .SDcols = c_col_cl]
   
   # Maak plot per groep
   for (i in seq_along(group_cl_levels)) {
     a_cl_val <- group_cl_levels[i]
-    target_subset <- dt[get(group_col) == a_cl_val]
-    target_vals <- target_subset[[c_col]]
-   
-    dens_subset <- dens_dt[get(group_col_cl) == a_cl_val]
-    dens_vals <- dens_subset[["y"]]
+    target_subset <- dt[dt[[group_col]] == a_cl_val]
+    target_vals   <- target_subset[[c_col]]
+    
+    dens_subset <- dens_dt[dens_dt[[group_col_cl]] == a_cl_val]
+    dens_vals   <- dens_subset[["y"]]
 
     if (length(dens_vals) < 2 || nrow(dens_subset) == 0) {
       plots[[i]] <- ggplot() + 
@@ -66,13 +68,14 @@ plot_c2_density_with_intervals <- function(
       next
     }
 
-    max_estimate <- max(target_subset[,get(estimate_col)], na.rm = TRUE)
+    max_estimate <- max(target_subset[[estimate_col]], na.rm = TRUE)
     max_density_y <- max(dens_vals, na.rm = TRUE)
     
     scale_factor <- max_line_height_frac * max_density_y / max_estimate
 
-    dt[, y_start := 0]
-    dt[, y_end := get(estimate_col) * scale_factor]
+    target_subset[, y_start := 0]
+    target_subset[, y_end := target_subset[[estimate_col]] * scale_factor]
+    #of: target_subset[, y_end := .SD[[1L]] * scale_factor, .SDcols = estimate_col]
    
     p <- ggplot() +
       geom_line(data = dens_subset, aes(x = x, y = y), linewidth = 1) + # na y=y: , color = a

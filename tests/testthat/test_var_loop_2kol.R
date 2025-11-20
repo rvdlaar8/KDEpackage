@@ -7,7 +7,8 @@ test_that("matching_pipeline_variant werkt voor var1", {
     dt2 = dt2,
     kol_a = "a",
     bx = c("b", "d"),
-    variant = "var1"
+    variant = "var1",
+    grid_mode = "foverlaps"
   )
   dt1 <- res$dt1
   dt2 <- res$dt2
@@ -25,7 +26,8 @@ test_that("matching_pipeline_variant werkt voor var2", {
     dt2 = dt2,
     kol_a = "a",
     bx = c("b", "d"),
-    variant = "var2"
+    variant = "var2",
+    grid_mode = "foverlaps"
   )
   dt1 <- res$dt1
   dt2 <- res$dt2
@@ -55,7 +57,8 @@ test_that("matching_pipeline_variant werkt voor var3 met schatting", {
     kol_N = "N_group",
     variant = "var3",
     marge = 0.1,
-    ..verbose = FALSE
+    ..verbose = FALSE,
+    grid_mode = "foverlaps"
   )
   dt1 <- res$dt1
   dt2 <- res$dt2

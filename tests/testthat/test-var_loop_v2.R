@@ -7,7 +7,8 @@ test_that("matching_pipeline_variant value tests var1", {
     dt2 = dt2,
     kol_a = "a",
     bx = "b",
-    variant = "var1"
+    variant = "var1",
+    grid_mode = "foverlaps"
   )
   dt1 <- res$dt1
   dt2 <- res$dt2
@@ -25,7 +26,8 @@ test_that("matching_pipeline_variant value tests var2", {
     dt2 = dt2,
     kol_a = "a",
     bx = "b",
-    variant = "var2"
+    variant = "var2",
+    grid_mode = "foverlaps"
   )
   dt1 <- res$dt1
   dt2 <- res$dt2
@@ -54,7 +56,8 @@ test_that("matching_pipeline_variant dimension tests var3", {
     variant = "var3",
     marge = 0.1,
     auto_bw = TRUE,
-    ..verbose = FALSE
+    ..verbose = FALSE,
+    grid_mode = "foverlaps"
   )
   dt1 <- res$dt1
   dt2 <- res$dt2

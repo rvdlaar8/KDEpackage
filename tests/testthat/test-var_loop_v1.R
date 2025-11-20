@@ -5,7 +5,7 @@ test_that("matching_pipeline var 1 expected columns", {
   nrow_dt10 <- nrow(dt1)
   res <- matching_pipeline_variant(dt1, dt2, variant = "var1", 
                                    kol_a = "a", bx = c("b"), cx = c("c"),
-                                   marge = 0.2)
+                                   marge = 0.2, grid_mode = "foverlaps")
   dt1 <- res$dt1
   dt2 <- res$dt2
   expect_equal(nrow_dt10, nrow(dt1))
@@ -19,7 +19,7 @@ test_that("matching_pipeline wrapper var 2 expected columns", {
   nrow_dt20 <- nrow(dt2)
   res <- matching_pipeline_variant(dt1, dt2, variant = "var2", 
                                    kol_a = "a", bx = c("b"), cx = c("c"),
-                                   marge = 0.2)
+                                   marge = 0.2, grid_mode = "foverlaps")
   dt1 <- res$dt1
   dt2 <- res$dt2
   
@@ -38,7 +38,7 @@ test_that("matching_pipeline wrapper var 3 expected columns", {
                                    kol_a_cl = "a1_cl", bx_cl = c("b1_cl"), cx_cl = c("c1_cl"),
                                    ag_a = N1_a, kol_N = "N1_a",
                                    marge = 0.05,  # auto_bw = FALSE, 
-                                   ..verbose = TRUE)
+                                   ..verbose = TRUE, grid_mode = "foverlaps")
   dt2 <- res$dt2
   
   expect_equal(nrow_dt20, nrow(dt2))

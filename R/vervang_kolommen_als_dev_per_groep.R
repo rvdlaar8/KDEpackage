@@ -17,7 +17,8 @@ vervang_kolommen_als_dev_per_groep <- function(dt, kol_a, cols, p_dev, p_frac, s
     nieuwe_col <- paste0(col, suffix)
     
     # Maak kopie van originele kolom
-    dt[, (nieuwe_col) := get(col)]
+    #dt[, (nieuwe_col) := get(col)]
+    dt[, (nieuwe_col) := dt[[col]]]
     
     # Bepaal rijen die mogelijk gewijzigd worden
     wijzig_mask <- runif(nrow(dt)) < p_dev
@@ -81,11 +82,11 @@ vervang_kolommen_als_dev_per_groep <- function(dt, kol_a, cols, p_dev, p_frac, s
 # )
 # 
 # dt
-# nrow(dt[cl1 != cl1_x,]) # 175 waarom zo laag?
-# nrow(dt[cl2 != cl2_x,]) # 165
+# nrow(dt[cl1 != cl1_x,]) # 810, 0.5*2000=1000
+# nrow(dt[cl2 != cl2_x,]) # 827
 # 
-# nrow(dt[is.na(cl1_x),]) # 1603 ok
-# nrow(dt[is.na(cl2_x),]) # 1585 ok
+# nrow(dt[is.na(cl1_x),]) # 17
+# nrow(dt[is.na(cl2_x),]) # 17
 # 
 # nrow(dt[is.na(cl1),]) # 0
 # nrow(dt[is.na(cl2),]) # 0

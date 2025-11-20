@@ -2,7 +2,7 @@
 % Please edit documentation in R/matching_pipeline_variant.R
 \name{matching_pipeline_variant}
 \alias{matching_pipeline_variant}
-\title{Wrapper voor matching_pipeline variant 1, 2 of 3}
+\title{matching_pipeline_variant}
 \usage{
 matching_pipeline_variant(
   dt1 = NULL,
@@ -25,43 +25,13 @@ matching_pipeline_variant(
   nomatch = 0L,
   ..verbose = TRUE,
   show_progress = FALSE,
-  logfile = NULL
+  logfile = NULL,
+  grid_mode
 )
 }
-\arguments{
-\item{dt1}{Eerste data.table (alleen nodig bij variant 1 of 2)}
-
-\item{dt2}{Tweede data.table}
-
-\item{sep}{Scheidingsteken voor samengestelde kolommen}
-
-\item{kol_a}{Naam van groepskolom}
-
-\item{kol_a_cl}{Naam van groepskolom_cl (alleen nodig bij variant 3)}
-
-\item{bx}{Vector met kolomnamen voor exacte matching}
-
-\item{cx}{Vector met kolomnamen voor intervalschatting}
-
-\item{bx_cl}{Kolomnamen van bx_cl (alleen voor variant 3)}
-
-\item{cx_cl}{Kolomnamen van cx_cl (alleen voor variant 3)}
-
-\item{ag_a}{Aggregatietabel met groepsgroottes (alleen voor variant 3)}
-
-\item{kol_N}{Naam van kolom met groepsgrootte in ag_a}
-
-\item{variant}{Te kiezen variant: "var1" (U_exact), "var2" (s_exact), "var3" (s_geschat)}
-
-\item{marge}{Margeparameter voor intervalgrenzen}
-
-\item{na.rm}{Of NA’s moeten worden verwijderd bij samenvoegen}
-
-\item{.verbose}{Of voortgangsmeldingen getoond moeten worden}
-}
-\value{
-data.table met toegevoegde kolommen, afhankelijk van variant
-}
 \description{
-Roept de juiste variant aan en loopt over alle kolommen in `bx` en `cx`.
+matching_pipeline_variant
+}
+\details{
+matching_pipeline_variant
 }

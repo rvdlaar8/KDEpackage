@@ -7,47 +7,45 @@
 #' @export
 tel_b2_in_interval_rond_b1_foverlaps <- function(dt1, dt2, kol_a, kol_c, marge, row_limit, 
                                                  nomatch, ...verbose, show_progress, logfile) {
-
   # dt1 en dt2 zijn kolomsubsets, var1 Cx
   stopifnot(!is.null(kol_a), !is.null(kol_c), !is.null(marge))
   stopifnot(kol_a %in% names(dt1), kol_c %in% names(dt1))
   stopifnot(kol_a %in% names(dt2), kol_c %in% names(dt2))
 
+  x <- dt1[[kol_c]]
   dt1[, `:=`(
-    #rowid = .I, 
-    lower = fifelse(get(kol_c) >= 0, get(kol_c) * (1 - marge), get(kol_c) * (1 + marge)),
-    upper = fifelse(get(kol_c) >= 0, get(kol_c) * (1 + marge), get(kol_c) * (1 - marge))
+    lower = fifelse(x >= 0, x * (1 - marge), x * (1 + marge)),
+    upper = fifelse(x >= 0, x * (1 + marge), x * (1 - marge))
   )]
-  dt1_valid <- dt1[!is.na(get(kol_c))]
+  dt1_valid <- dt1[!is.na(dt1[[kol_c]])] 
   
   dt1_valid <- dt1_valid[is.finite(lower) & is.finite(upper) & !is.na(lower) & !is.na(upper)]
   dt1_valid[, c("lower", "upper") := .(pmin(lower, upper), pmax(lower, upper))]
   # lower en upper moeten in dt1 en dt2 hetzelfde type hebben:
   dt1_valid[, `:=` (lower = as.numeric(lower), upper = as.numeric(upper))]
-  #dt1_valid[, c("lower", "upper") := lapply(.SD, as.numeric), .SDcols = c("lower", "upper")]
-  
+
   #setkeyv(dt1_valid, c(kol_a, "lower", "upper")) # wijzigt rijvolgorde
-  dt2_valid <- dt2[!is.na(get(kol_c))]
-  dt2_valid[, `:=`(
-    lower = get(kol_c),
-    upper = get(kol_c)
-  )]
+  dt2_valid <- dt2[!is.na(dt2[[kol_c]])] #dt2[!is.na(get(kol_c))]
+
+  x <- dt2_valid[[kol_c]]
+  dt2_valid[, c("lower", "upper") := .(x, x)]
   
   dt2_valid <- dt2_valid[is.finite(lower) & is.finite(upper) & !is.na(lower) & !is.na(upper)]
   dt2_valid[, c("lower", "upper") := .(pmin(lower, upper), pmax(lower, upper))]
   dt2_valid[, `:=` (lower = as.numeric(lower), upper = as.numeric(upper))]
-  #dt2_valid[, c("lower", "upper") := lapply(.SD, as.numeric), .SDcols = c("lower", "upper")]
-  
+
   # Toegevoegd: check op lege dt1_valid of dt2_valid vóór foverlaps-aanroep
   if (nrow(dt1_valid) == 0L || nrow(dt2_valid) == 0L) {
-    message("⏩ Geen geldige rijen voor foverlaps (tel_b2).")
+    #message("⏩ Geen geldige rijen voor foverlaps (tel_b2).")
     
     # output vullen met 0 en structuur behouden
     dummy_out <- dt1[, .SD, .SDcols = c("rowid", kol_a, kol_c)]
+
     groep_totalen <- dt2[, .(
       n_a = .N,
-      n_a_not_na = sum(!is.na(get(kol_c)))
-    ), by = kol_a]
+      n_a_not_na = sum(!is.na(.SD[[1L]]))
+    ), by = kol_a, .SDcols = kol_c]
+    
     setkeyv(groep_totalen, kol_a)
   
     out <- groep_totalen[dummy_out, on = kol_a]
@@ -62,10 +60,6 @@ tel_b2_in_interval_rond_b1_foverlaps <- function(dt1, dt2, kol_a, kol_c, marge, 
   }
 
   overlap_result <- tryCatch({
-    # foverlaps_by_row_limit_with_fallback(dt2_valid, dt1_valid, kol_a = kol_a, 
-    #                                      row_limit = row_limit, nomatch = nomatch, 
-    #                                      .verbose = ...verbose, show_progress = show_progress, 
-    #                                      logfile = logfile)
     foverlaps_count_by_row_limit_with_fallback(dt1_valid, dt2_valid, kol_a = kol_a, kol_c = kol_c,
                                          row_limit = row_limit, .verbose = ...verbose, 
                                          show_progress = show_progress, logfile = logfile)
@@ -97,10 +91,10 @@ tel_b2_in_interval_rond_b1_foverlaps <- function(dt1, dt2, kol_a, kol_c, marge, 
     stop("foverlaps() is mislukt in tel_b2 – zie foutdetails hierboven.")
   }
   
-  groep_totalen <- dt2[, .( # niet dt2_valid
+  groep_totalen <- dt2[, .(
     n_a = .N,
-    n_a_not_na = sum(!is.na(get(kol_c)))
-  ), by = kol_a]
+    n_a_not_na = sum(!is.na(.SD[[1L]]))
+  ), by = kol_a, .SDcols = kol_c]
 
   setkeyv(groep_totalen,kol_a)
 
@@ -132,38 +126,37 @@ tel_b1_in_interval_rond_b2_foverlaps <- function(dt1, dt2, kol_a, kol_c, marge, 
   stopifnot(kol_a %in% names(dt1), kol_c %in% names(dt1))
   stopifnot(kol_a %in% names(dt2), kol_c %in% names(dt2))
   
+  x <- dt2[[kol_c]]
   dt2[, `:=`(
-    #rowid = .I, 
-    lower = fifelse(get(kol_c) >= 0, get(kol_c) / (1 + marge), get(kol_c) / (1 - marge)),
-    upper = fifelse(get(kol_c) >= 0, get(kol_c) / (1 - marge), get(kol_c) / (1 + marge))
+    lower = fifelse(x >= 0, x / (1 + marge), x / (1 - marge)),
+    upper = fifelse(x >= 0, x / (1 - marge), x / (1 + marge))
   )]
-  dt2_valid <- dt2[!is.na(get(kol_c))]
+  dt2_valid <- dt2[!is.na(dt2[[kol_c]])] #dt2[!is.na(get(kol_c))]
   
   dt2_valid <- dt2_valid[is.finite(lower) & is.finite(upper) & !is.na(lower) & !is.na(upper)]
   dt2_valid[, c("lower", "upper") := .(pmin(lower, upper), pmax(lower, upper))]
   dt2_valid[, `:=` (lower = as.numeric(lower), upper = as.numeric(upper))]
-  #dt2_valid[, c("lower", "upper") := lapply(.SD, as.numeric), .SDcols = c("lower", "upper")]
-  
-  dt1_valid <- dt1[!is.na(get(kol_c))]
-  dt1_valid[, `:=`(
-    lower = get(kol_c),
-    upper = get(kol_c)
-  )]
+
+  dt1_valid <- dt1[!is.na(dt1[[kol_c]])] #dt1[!is.na(get(kol_c))]
+
+  x <- dt1_valid[[kol_c]]
+  dt1_valid[, c("lower", "upper") := .(x, x)]
   
   dt1_valid <- dt1_valid[is.finite(lower) & is.finite(upper) & !is.na(lower) & !is.na(upper)]
   dt1_valid[, c("lower", "upper") := .(pmin(lower, upper), pmax(lower, upper))]
   dt1_valid[, `:=` (lower = as.numeric(lower), upper = as.numeric(upper))]
-  #dt1_valid[, c("lower", "upper") := lapply(.SD, as.numeric), .SDcols = c("lower", "upper")]
-  
+
   # Toegevoegd: check op lege dt1_valid of dt2_valid vóór foverlaps-aanroep
   if (nrow(dt1_valid) == 0L || nrow(dt2_valid) == 0L) {
-    message("⏩ Geen geldige rijen voor foverlaps (tel_b1).")
+    #message("⏩ Geen geldige rijen voor foverlaps (tel_b1).")
     
     dummy_out <- dt2[, .SD, .SDcols = c("rowid", kol_a, kol_c)]
+
     groep_totalen <- dt2[, .(
       n_a = .N,
-      n_a_not_na = sum(!is.na(get(kol_c)))
-    ), by = kol_a]
+      n_a_not_na = sum(!is.na(.SD[[1L]]))
+    ), by = kol_a, .SDcols = kol_c]
+    
     setkeyv(groep_totalen, kol_a)
     
     out <- groep_totalen[dummy_out, on = kol_a]
@@ -178,10 +171,6 @@ tel_b1_in_interval_rond_b2_foverlaps <- function(dt1, dt2, kol_a, kol_c, marge, 
   }
   
   overlap_result <- tryCatch({
-    # foverlaps_by_row_limit_with_fallback(dt1_valid, dt2_valid, kol_a = kol_a,
-    #                                      row_limit = row_limit, nomatch = nomatch, 
-    #                                      .verbose = ...verbose, show_progress = show_progress, 
-    #                                      logfile = logfile)
     foverlaps_count_by_row_limit_with_fallback(dt2_valid, dt1_valid, kol_a = kol_a, kol_c = kol_c,
                                                row_limit = row_limit, .verbose = ...verbose, 
                                                show_progress = show_progress, logfile = logfile)
@@ -215,10 +204,10 @@ tel_b1_in_interval_rond_b2_foverlaps <- function(dt1, dt2, kol_a, kol_c, marge, 
     stop("foverlaps() is mislukt in tel_b1 – zie foutdetails hierboven.")
   }
  
-  groep_totalen <- dt2[, .( # niet dt2_valid
+  groep_totalen <- dt2[, .(
     n_a = .N,
-    n_a_not_na = sum(!is.na(get(kol_c)))
-  ), by = kol_a]
+    n_a_not_na = sum(!is.na(.SD[[1L]]))
+  ), by = kol_a, .SDcols = kol_c]
 
   setkeyv(groep_totalen,kol_a)
   out <- groep_totalen[overlap_result, on = kol_a]

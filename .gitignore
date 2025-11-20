@@ -1,32 +1,24 @@
-# .gitignore
-
-# Negeer submap 'old_code'
+# Submappen die je niet wilt volgen in Git
 /old_code/
-
-# Negeer de volledige map 'plots_output'
 /plots_output/
 dev/
 
-# Negeer specifiek bestand binnen submap R
+# Specifiek helperbestand niet tracken
 /R/functielijst_per_script.txt
-.Rproj.user
 
-.Ruserdata
-
-# R build artefacten
-.Rbuildignore
+# RStudio gerelateerde bestanden die per machine verschillen
 .Rproj.user/
 .Rhistory
 .RData
+.Ruserdata
 
-# Package build output
+# alle zip bestanden negeren
+*.zip 
+
+# Package build output en checks
 *.Rcheck/
 *.tar.gz
-*.Rproj
 
-# RStudio
-.Rproj.user/
-
-# Overige tijdelijke bestanden
+# Overige tijdelijke bestanden (OS)
 .DS_Store
 Thumbs.db

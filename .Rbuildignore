@@ -1,3 +1,4 @@
+# Helperbestanden/mappen uitsluiten van package build
 ^R/functielijst_per_script\.txt$
 ^dev$
 ^testscript$

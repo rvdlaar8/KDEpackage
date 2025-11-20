@@ -4,3 +4,4 @@
 ^libraries$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^.*\.zip$

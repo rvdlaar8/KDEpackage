@@ -25,7 +25,7 @@ test_that("fishing 1 counts c_v and n_v", {
   n_v <- c("n1", "n2")
   p   <- 0.01  # 1%
   
-  result1 <- count_group_constraints(dt, k_v, c_v, n_v, p)
+  result1 <- count_group_constraints_fast(dt, k_v, c_v, n_v, p)
 
   # test dataset 2:
   dt_test <- data.table(
@@ -42,7 +42,7 @@ test_that("fishing 1 counts c_v and n_v", {
   n_v <- c("n_pos", "n_mix")
   p   <- 0.01   # 1% marge
   
-  result2 <- count_group_constraints(dt_test, k_v, c_v, n_v, p)
+  result2 <- count_group_constraints_fast(dt_test, k_v, c_v, n_v, p)
   
   expect_equal(result1, c(c1 = 5L, c2 = 3L, n1 = 3L, n2 = 0L))
   expect_equal(result2, c(c1 = 4L, n_pos = 6L, n_mix = NA))

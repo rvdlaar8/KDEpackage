@@ -71,7 +71,7 @@ estimate_c1_counts_in_c2_intervals <- function(dt2,
         # in cx_var12:
         n_a_not_na_temp <- nrow(dt2_temp[!is.na(dt2_temp[[kol_c]])])
         estimated_n_cx <- estimated_n_cx * n_a_not_na_temp # toegevoegd, nu weer integers
-        cat("\naangepaste noemer\n")
+        #cat("\naangepaste noemer\n")
       } else {
         if (length(dens_vals) < 2 || all(is.na(dens_vals))) {
           if (...verbose) message("  - Onvoldoende gegevens voor KDE (lengte < 2 of alles NA)")
